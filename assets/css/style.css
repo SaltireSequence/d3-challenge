@@ -14,6 +14,14 @@ body {
   padding-bottom: 80px;
 }
 
+#headertext {
+  text-align: center;
+}
+
+#subheader {
+  text-align: center;
+}
+
 #footer {
   position: absolute;
   bottom: 0;
