@@ -12,4 +12,15 @@ if (!chartSVG.empty()) {
 var chartWidth = 1000;
 var chartHeight = 612.24
 
-var margins = {}
+// Setting appropriate margins
+var margins = {
+  top: 30,
+  right: 40,
+  bottom: 120,
+  left: 100
+};
+
+// Defining dimensions of chart
+// REF: https://observablehq.com/@d3/margin-convention
+var height = chartWidth - margin.top - margin.bottom;
+var width = chartHeight - margin.left - margin.right;
