@@ -22,8 +22,8 @@ function chartRender() {
 
   /* Defining dimensions of chart
   REF: https://observablehq.com/@d3/margin-convention */
-  var height = chartHeight - margin.top - margin.bottom;
-  var width = chartWidth - margin.left - margin.right;
+  var height = chartHeight - margins.top - margins.bottom;
+  var width = chartWidth - margins.left - margins.right;
 
   /* SVG wrapper to hold the chart. I appended my SVG group, that will
   hold my chart
@@ -35,7 +35,7 @@ function chartRender() {
     .attr("height", chartHeight);
 
   var chartGroup = svgWrapper.append("g")
-    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    .attr("transform", `translate(${margins.left}, ${margins.top})`);
 
 // Setting initial parameters to render on chart, upon loading
   var InitialXAxis = "poverty";
