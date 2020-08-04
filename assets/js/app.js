@@ -10,7 +10,7 @@ function chatRender() {
 
   // Using a proportional scaler, to set chart dimensions.
   var chartWidth = 1000;
-  var chartHeight = 612.24
+  var chartHeight = 612.24;
 
   // Setting appropriate margins
   var margins = {
@@ -22,8 +22,8 @@ function chatRender() {
 
   /* Defining dimensions of chart
   REF: https://observablehq.com/@d3/margin-convention */
-  var height = chartWidth - margin.top - margin.bottom;
-  var width = chartHeight - margin.left - margin.right;
+  var height = chartHeight - margin.top - margin.bottom;
+  var width = chartWidth - margin.left - margin.right;
 
   /* SVG wrapper to hold the chart. I appended my SVG group, that will
   hold my chart
