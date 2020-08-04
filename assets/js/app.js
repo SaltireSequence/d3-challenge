@@ -20,7 +20,14 @@ var margins = {
   left: 100
 };
 
-// Defining dimensions of chart
-// REF: https://observablehq.com/@d3/margin-convention
+/* Defining dimensions of chart
+REF: https://observablehq.com/@d3/margin-convention */
 var height = chartWidth - margin.top - margin.bottom;
 var width = chartHeight - margin.left - margin.right;
+
+/* SVG wrapper to hold the chart. I appended my SVG group, that will
+hold my chart*/ 
+var svgWrapper = d3.select("#scatter")
+.append("svg")
+  .attr("width", chartWidth)
+  .attr("height", chartHeight)
