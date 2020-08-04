@@ -82,7 +82,7 @@ axis labels clicked */
 
   /* function to update circlesGroup to transition to the revised
   circlesGroup */
-  function renderCircles(circlesGroup, newXScale, InitialXAxis, newYScale,InitialYAxis) {
+  function renderCircles(circlesGroup, newXScale, InitialXAxis, newYScale, InitialYAxis) {
     circlesGroup.transition()
       .duration(500)
       .attr("cx", d => newXScale(d[InitialXAxis]))
@@ -93,10 +93,32 @@ axis labels clicked */
   // function to update textGroup to transition to revised textGroup
   function renderText(textGroup, newXScale, InitialXAxis, newYScale, InitialYAxis) {
   textGroup.transition()
-    .duration(1000)
+    .duration(500)
     .attr("x", d => newXScale(d[InitialXAxis]))
     .attr("y", d => newYScale(d[InitialYAxis]))
     .attr("text-anchor", "middle");
 
-  return textGroup;
-}
+    return textGroup;
+  }
+
+// function for updating circlesGroup with new tooltip.
+  function updateToolTip(InitialXAxis, InitialYAxis, circlesGroup, textGroup) {
+
+    if (InitialXAxis === "poverty") {
+      var xLabel = "Poverty (%)";
+    }
+    else if (InitialXAxis === "age") {
+      var xLabel = "Age (Median)";
+    }
+    else {
+      var xLabel = "Household Income (Median)";
+    }
+    if (InitialYAxis === "healthcare") {
+      var yLabel = "Lacks Healthcare (%)";
+    }
+    else if (InitialYAxis === "obesity") {
+      var yLabel = "Obese (%)";
+    }
+    else {
+      var yLabel = "Smokes (%)";
+    }
