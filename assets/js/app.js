@@ -1,5 +1,5 @@
 // @TODO: YOUR CODE HERE!
-function chatRender() {
+function chartRender() {
 
 // Calling chart, if chartSVG is not empty, when brower loads index
   var chartSVG = d3.select("body").select("svg");
@@ -41,7 +41,7 @@ function chatRender() {
   var InitialXAxis = "poverty";
   var InitialYAxis = "healthcare";
 
-  function xScale(CensusData, InitialXAxis){
+  function xScale(CensusData, InitialXAxis) {
     var xLinearScale = d3.scaleLinear()
       .domain([d3.min(CensusData, d => d[InitialXAxis]) * 0.8,
         d3.max(CensusData, d => d[InitialXAxis]) * 1.2
