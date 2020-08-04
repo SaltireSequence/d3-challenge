@@ -37,4 +37,10 @@ function chatRender() {
   var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  var
+// Setting initial parameters to render on chart, upon loading
+  var InitialXAxis = "poverty";
+  var InitialYAxis = "healthcare";
+
+  function xScale(data, InitialXAxis){
+    var xLinearScale
+  }
