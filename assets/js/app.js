@@ -72,7 +72,7 @@ axis labels clicked */
     return xAxis;
   }
 
-  functinon YAxisUpdate(newYScalem yAxis) {
+  functinon YAxisUpdate(newYScalem, yAxis) {
     var leftAxis = d3.axisLeft(newYScale);
     yAxis.transition()
       .duration(500)
