@@ -41,7 +41,8 @@ function chartRender() {
   var InitialXAxis = "poverty";
   var InitialYAxis = "healthcare";
 
-// functions to update the scale of both the y and x axis, when clicked
+/* functions to update the scale of both the y and x scales,
+axis labels clicked */
   function xScale(CensusData, InitialXAxis) {
 // Creating scale functions for both the y and x axis.
     var xLinearScale = d3.scaleLinear()
@@ -59,4 +60,22 @@ function chartRender() {
       ])
       .range([height, 0]);
     return yLinearScale;
+  }
+
+  /* functions to update  both the y and x axis, when the axis labels
+  are clicked */
+  function XAxisUpdate(newXScale, xAxis) {
+    var bottomAxis = d3.axisBottom(newXScale);
+    xAxis.transition()
+      .duration(500)
+      .call(bottomAxis);
+    return xAxis;
+  }
+
+  functinon YAxisUpdate(newYScalem yAxis) {
+    var leftAxis = d3.axisLeft(newYScale);
+    yAxis,transition()
+      .duration(500)
+      .call(leftAxis;)
+    return yAxis;
   }
