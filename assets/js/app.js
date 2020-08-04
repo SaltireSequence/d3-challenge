@@ -34,7 +34,7 @@ function chatRender() {
     .attr("width", chartWidth)
     .attr("height", chartHeight)
 
-  var chartGroup = svg.append("g")
+  var chartGroup = svgWrapper.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Setting initial parameters to render on chart, upon loading
@@ -42,5 +42,10 @@ function chatRender() {
   var InitialYAxis = "healthcare";
 
   function xScale(data, InitialXAxis){
-    var xLinearScale
+    var xLinearScale = d3.scaleLinear()
+      .domain([d3.min(acsData, d => d[InitialXAxis]) * 0.8,
+        d3.max(acsData, d => d[InitialXAxis]) * 1.2
+      ])
+      .range([0, width]);
+    return xLinearScale;
   }
