@@ -32,7 +32,7 @@ function chatRender() {
   var svgWrapper = d3.select("#scatter")
   .append("svg")
     .attr("width", chartWidth)
-    .attr("height", chartHeight)
+    .attr("height", chartHeight);
 
   var chartGroup = svgWrapper.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -41,10 +41,10 @@ function chatRender() {
   var InitialXAxis = "poverty";
   var InitialYAxis = "healthcare";
 
-  function xScale(data, InitialXAxis){
+  function xScale(CensusData, InitialXAxis){
     var xLinearScale = d3.scaleLinear()
-      .domain([d3.min(acsData, d => d[InitialXAxis]) * 0.8,
-        d3.max(acsData, d => d[InitialXAxis]) * 1.2
+      .domain([d3.min(CensusData, d => d[InitialXAxis]) * 0.8,
+        d3.max(CensusData, d => d[InitialXAxis]) * 1.2
       ])
       .range([0, width]);
     return xLinearScale;
