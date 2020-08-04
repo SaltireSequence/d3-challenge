@@ -72,10 +72,31 @@ axis labels clicked */
     return xAxis;
   }
 
-  functinon YAxisUpdate(newYScalem, yAxis) {
+  function YAxisUpdate(newYScalem, yAxis) {
     var leftAxis = d3.axisLeft(newYScale);
     yAxis.transition()
       .duration(500)
       .call(leftAxis);
     return yAxis;
   }
+
+  /* function to update circlesGroup to transition to the revised
+  circlesGroup */
+  function renderCircles(circlesGroup, newXScale, InitialXAxis, newYScale,InitialYAxis) {
+    circlesGroup.transition()
+      .duration(500)
+      .attr("cx", d => newXScale(d[InitialXAxis]))
+      .attr("cy", d => newYScale(d[InitialYAxis]));
+    return circlesGroup;
+  }
+
+  // function to update textGroup to transition to revised textGroup
+  function renderText(textGroup, newXScale, InitialXAxis, newYScale, InitialYAxis) {
+  textGroup.transition()
+    .duration(1000)
+    .attr("x", d => newXScale(d[InitialXAxis]))
+    .attr("y", d => newYScale(d[InitialYAxis]))
+    .attr("text-anchor", "middle");
+
+  return textGroup;
+}
