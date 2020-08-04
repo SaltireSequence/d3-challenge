@@ -122,3 +122,33 @@ axis labels clicked */
     else {
       var yLabel = "Smokes (%)";
     }
+
+    // code to initialize the tooltip
+    var toolTip = d3.tip()
+      .attr("class", "tooltip d3-tip")
+      .offset([90, 90])
+      .html(function(d) {
+        return (`<strong>${d.abbr}</strong><br>${xLabel} ${d[InitialXAxis]}
+          <br>${yLabel} ${d[InitialYAxis]}`);
+      });
+// Creating circles tooltip on scatterplot
+    circlesGroup.call(toolTip);
+    circlesGroup.on("mouseover", function(data) {
+      toolTip.show(data, this);
+    })
+// onmouseout event handler
+      .on("mouseout", function(data) {
+        toolTip.hide(data);
+      });
+
+// Text creation tooltip on scatterplot
+    textGroup.call(toolTip);
+    textGroup.on("mouseover", function(data) {
+      toolTip.show(data, this);
+    })
+// onmouseout event handler
+      .on("mouseout", function(data) {
+        toolTip.hide(data);
+      });
+    return circlesGroup;
+  }
