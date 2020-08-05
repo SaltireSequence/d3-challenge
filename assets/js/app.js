@@ -176,3 +176,12 @@ for the scatterplot */
 // Axis function creation using the axis component
     var bottomAxis = d3.axisBottom(xLinearScale);
     var leftAxis = d3.axisLeft(yLinearScale);
+
+// Appending xAxis and yAxis to the scatterplot
+    var xAxis = chartGroup.append("g")
+      .classed("x-axis", true)
+      .attr("transform", `translate(0, ${height})`)
+      .call(bottomAxis);
+    var yAxis = chartGroup.append("g")
+      .classed("y-axis", true)
+      .call(leftAxis);
