@@ -290,3 +290,15 @@ REF: https://www.d3-graph-gallery.com/graph/custom_color.html */
           svgCircles = updateToolTip(InitialXAxis, InitialYAxis, svgCircles, textGroup);
   /* if / else if / else statements that will tag the activate / bold the axis
   label that is selected */
+          if (InitialYAxis === "obesity") {
+            lacksHealthcareLabel
+              .classed("active", false)
+              .classed("inactive", true);
+            obesityLabel
+              .classed("active", true)
+              .classed("inactive", false);
+            householdIncomeLabel
+              .classed("active", false)
+              .classed("inactive", true);
+          }
+        else if
