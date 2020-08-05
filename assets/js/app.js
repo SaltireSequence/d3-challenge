@@ -128,8 +128,7 @@ axis labels clicked */
       .attr("class", "tooltip d3-tip")
       .offset([90, 90])
       .html(function(d) {
-        return (`<strong>${d.abbr}</strong><br>${xLabel} ${d[InitialXAxis]}
-          <br>${yLabel} ${d[InitialYAxis]}`);
+        return (`<strong>${d.abbr}</strong><br>${xLabel} ${d[InitialXAxis]}<br>${yLabel} ${d[InitialYAxis]}`);
       });
 // Creating circles tooltip on scatterplot
     svgCircles.call(toolTip);
@@ -271,7 +270,7 @@ REF: https://www.d3-graph-gallery.com/graph/custom_color.html */
 // tooltip function update
     var svgCircles = updateToolTip(InitialXAxis, InitialYAxis, svgCircles, textGroup);
 
-    // xAxis Labels Event Listener
+    // xAxis event listener - labels
     xLabelsGroup.selectAll("text")
       .on("click", function() {
         // Get Value of Selection
@@ -290,7 +289,72 @@ REF: https://www.d3-graph-gallery.com/graph/custom_color.html */
           svgCircles = updateToolTip(InitialXAxis, InitialYAxis, svgCircles, textGroup);
   /* if / else if / else statements that will tag the activate / bold the axis
   label that is selected */
-          if (InitialYAxis === "obesity") {
+          if (InitialXAxis === "obesity") {
+            inPovertyLabel
+              .classed("active", false)
+              .classed("inactive", true);
+            obesityLabel
+              .classed("active", true)
+              .classed("inactive", false);
+            householdIncomeLabel
+              .classed("active", false)
+              .classed("inactive", true);
+          }
+          else if (InitialXAxis === "poverty") {
+            inPovertyLabel
+              .classed("active", true)
+              .classed("inactive", false);
+            ageLabel
+              .classed("active", false)
+              .classed("inactive", true);
+            householdIncomeLabel
+              .classed("active", false)
+              .classed("inactive", true);
+          }
+          else {
+            inPovertyLabel
+              .classed("active", false)
+              .classed("inactive", true);
+            ageLabel
+              .classed("active", true)
+              .classed("inactive", false);
+            householdIncomeLabel
+              .classed("active", false)
+              .classed("inactive", true);
+          }
+        }
+      });
+    // xAxis event listener - labels
+    yLabelsGroup.selectAll("text")
+      .on("click", function() {
+        // Get Value of Selection
+        var value = d3.select(this).attr("value");
+        if (value !== InitialYAxis) {
+    // Replaces InitialXAxis with Value
+          InitialYAxis = value;
+    // Update for new data
+          yLinearScale = yScale(CensusData, InitialXAxis);
+    // xAxis update for transitions
+          yAxis = YAxisUpdate(yLinearScale, yAxis);
+    // Updating the svgCircles with updated values
+          svgCircles = renderCircles(svgCircles, xLinearScale, InitialXAxis, yLinearScale, InitialYAxis);
+    // Updating the textGroup with updated values
+          textGroup = renderText(textGroup, xLinearScale, InitialXAxis, yLinearScale, InitialYAxis)
+          svgCircles = updateToolTip(InitialXAxis, InitialYAxis, svgCircles, textGroup);
+    /* if / else if / else statements that will tag the activate / bold the axis
+    label that is selected */
+          if (InitialYAxis === "healthcare") {
+            lacksHealthcareLabel
+              .classed("active", true)
+              .classed("inactive", false);
+            obesityLabel
+              .classed("active", false)
+              .classed("inactive", true);
+            smokesLabel
+              .classed("active", false)
+              .classed("inactive", true);
+          }
+          else if (InitialYAxis === "obesity") {
             lacksHealthcareLabel
               .classed("active", false)
               .classed("inactive", true);
@@ -301,4 +365,20 @@ REF: https://www.d3-graph-gallery.com/graph/custom_color.html */
               .classed("active", false)
               .classed("inactive", true);
           }
-        else if
+          else {
+            lacksHealthcareLabel
+              .classed("active", false)
+              .classed("inactive", true);
+            obesityLabel
+              .classed("active", false)
+              .classed("inactive", true);
+            smokesLabel
+              .classed("active", true)
+              .classed("inactive", false);
+          }
+        }
+      });
+  });
+}
+chartRender();
+d3.select(window).on("resize", chartRender);
