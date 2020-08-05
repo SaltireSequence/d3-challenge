@@ -80,14 +80,14 @@ axis labels clicked */
     return yAxis;
   }
 
-  /* function to update circlesGroup to transition to the revised
-  circlesGroup */
-  function renderCircles(circlesGroup, newXScale, InitialXAxis, newYScale, InitialYAxis) {
-    circlesGroup.transition()
+  /* function to update svgCircles to transition to the revised
+  svgCircles */
+  function renderCircles(svgCircles, newXScale, InitialXAxis, newYScale, InitialYAxis) {
+    svgCircles.transition()
       .duration(500)
       .attr("cx", d => newXScale(d[InitialXAxis]))
       .attr("cy", d => newYScale(d[InitialYAxis]));
-    return circlesGroup;
+    return svgCircles;
   }
 
   // function to update textGroup to transition to revised textGroup
@@ -101,8 +101,8 @@ axis labels clicked */
     return textGroup;
   }
 
-// function for updating circlesGroup with new tooltip.
-  function updateToolTip(InitialXAxis, InitialYAxis, circlesGroup, textGroup) {
+// function for updating svgCircles with new tooltip.
+  function updateToolTip(InitialXAxis, InitialYAxis, svgCircles, textGroup) {
 
     if (InitialXAxis === "poverty") {
       var xLabel = "Poverty (%)";
@@ -132,8 +132,8 @@ axis labels clicked */
           <br>${yLabel} ${d[InitialYAxis]}`);
       });
 // Creating circles tooltip on scatterplot
-    circlesGroup.call(toolTip);
-    circlesGroup.on("mouseover", function(data) {
+    svgCircles.call(toolTip);
+    svgCircles.on("mouseover", function(data) {
       toolTip.show(data, this);
     })
 // onmouseout event handler
@@ -150,7 +150,7 @@ axis labels clicked */
       .on("mouseout", function(data) {
         toolTip.hide(data);
       });
-    return circlesGroup;
+    return svgCircles;
   }
 
   // importing data from the provided data.csv File
@@ -185,3 +185,16 @@ for the scatterplot */
     var yAxis = chartGroup.append("g")
       .classed("y-axis", true)
       .call(leftAxis);
+
+// Creating and initializing initial circle plots on scatterplot
+    var svgCircles = chartGroup.selectAll(".stateCircle")
+      .data(CensusData)
+      .enter()
+      .append("circle")
+      .attr("cx", d => xLinearScale(d[InitialXAxis]))
+      .attr("cy", d => yLinearScale(d[InitialYAxis]))
+      .attr("class", "stateCircle")
+      .attr("r", 14)
+      .attr("opacity", ".75");
+
+// Appending data
