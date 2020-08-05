@@ -152,3 +152,27 @@ axis labels clicked */
       });
     return circlesGroup;
   }
+
+  // importing data from the provided data.csv File
+  d3.csv("assets/data/data.csv")
+    .then(function(CensusData) {
+
+    /* Parsing the data and using the unary plus operator
+    to convert to numbers */
+    CensusData.forEach(function(data) {
+      data.poverty = +data.poverty;
+      data.age = +data.age;
+      data.income = +data.income;
+      data.healthcare = +data.healthcare;
+      data.obesity = +data.obesity;
+      data.smokes = +data.smokes;
+    });
+
+/* Creating functions pertinent to the xLinearScale and yLinearScale
+for the scatterplot */
+    var xLinearScale = xScale(CensusData, InitialXAxis);
+    var yLinearScale = yScale(CensusData, InitialYAxis);
+
+// Axis function creation using the axis component
+    var bottomAxis = d3.axisBottom(xLinearScale);
+    var leftAxis = d3.axisLeft(yLinearScale);
