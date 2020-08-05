@@ -289,24 +289,24 @@ REF: https://www.d3-graph-gallery.com/graph/custom_color.html */
           svgCircles = updateToolTip(InitialXAxis, InitialYAxis, svgCircles, textGroup);
   /* if / else if / else statements that will tag the activate / bold the axis
   label that is selected */
-          if (InitialXAxis === "obesity") {
-            inPovertyLabel
-              .classed("active", false)
-              .classed("inactive", true);
-            obesityLabel
-              .classed("active", true)
-              .classed("inactive", false);
-            householdIncomeLabel
-              .classed("active", false)
-              .classed("inactive", true);
-          }
-          else if (InitialXAxis === "poverty") {
+          if (InitialXAxis === "poverty") {
             inPovertyLabel
               .classed("active", true)
               .classed("inactive", false);
             ageLabel
               .classed("active", false)
               .classed("inactive", true);
+            householdIncomeLabel
+              .classed("active", false)
+              .classed("inactive", true);
+          }
+          else if (InitialXAxis === "age") {
+            inPovertyLabel
+              .classed("active", false)
+              .classed("inactive", true);
+            ageLabel
+              .classed("active", true)
+              .classed("inactive", false);
             householdIncomeLabel
               .classed("active", false)
               .classed("inactive", true);
@@ -316,11 +316,11 @@ REF: https://www.d3-graph-gallery.com/graph/custom_color.html */
               .classed("active", false)
               .classed("inactive", true);
             ageLabel
-              .classed("active", true)
-              .classed("inactive", false);
-            householdIncomeLabel
               .classed("active", false)
               .classed("inactive", true);
+            householdIncomeLabel
+              .classed("active", true)
+              .classed("inactive", false);
           }
         }
       });
@@ -333,7 +333,7 @@ REF: https://www.d3-graph-gallery.com/graph/custom_color.html */
     // Replaces InitialXAxis with Value
           InitialYAxis = value;
     // Update for new data
-          yLinearScale = yScale(CensusData, InitialXAxis);
+          yLinearScale = yScale(CensusData, InitialYAxis);
     // xAxis update for transitions
           yAxis = YAxisUpdate(yLinearScale, yAxis);
     // Updating the svgCircles with updated values
