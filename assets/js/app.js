@@ -186,7 +186,8 @@ for the scatterplot */
       .classed("y-axis", true)
       .call(leftAxis);
 
-// Creating and initializing initial circle plots on scatterplot
+/* Creating and initializing initial circle plots on scatterplot
+REF: https://www.d3-graph-gallery.com/graph/custom_color.html */
     var svgCircles = chartGroup.selectAll(".stateCircle")
       .data(CensusData)
       .enter()
@@ -197,4 +198,37 @@ for the scatterplot */
       .attr("r", 14)
       .attr("opacity", ".75");
 
-// Appending data
+// Appending data text to Circles
+    var textGroup = chartGroup.selectAll(".stateText")
+      .data(CensusData)
+      .enter()
+      .append("text")
+      .attr("x", d => xLinearScale(d[InitialXAxis]))
+      .attr("y", d => yLinearScale(d[InitialYAxis]*.98))
+      .text(d => (d.abbr))
+      .attr("class", "stateText")
+      .attr("font-size", "12px")
+      .attr("text-anchor", "middle")
+      .attr("fill", "white");
+// Grouping for xAxis and yAxis Labels
+    var xLabelsGroup = chartGroup.append("g")
+      .attr("transform", `translate(${width / 2}, ${height + 20})`);
+// Append xAxis labels for inPovertyLabel, ageLabel, householdIncomeLabel
+    var inPovertyLabel = xLabelsGroup.append("text")
+      .attr("x", 0)
+      .attr("y", 20)
+      .attr("value", "poverty")
+      .classed("active", true)
+      .text("In Poverty (%)");
+    var ageLabel = xLabelsGroup.append("text")
+      .attr("x", 0)
+      .attr("y", 40)
+      .attr("value", "age")
+      .classed("inactive", true)
+      .text("Age (Median)");
+    var householdIncomeLabel = xLabelsGroup.append("text")
+      .attr("x", 0)
+      .attr("y", 60)
+      .attr("value", "income")
+      .classed("inactive", true)
+      .text("Household Income (Median)");
