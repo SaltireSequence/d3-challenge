@@ -268,4 +268,23 @@ REF: https://www.d3-graph-gallery.com/graph/custom_color.html */
       .classed("inactive", true)
       .text("Obese (%)");
 
-    var svgCircles = updateToolTip(InitialXAxis, InitialYAxis, svgCircles, textGroup);
+// tooltip function update
+  var svgCircles = updateToolTip(InitialXAxis, InitialYAxis, svgCircles, textGroup);
+
+  // xAxis Labels Event Listener
+  xLabelsGroup.selectAll("text")
+    .on("click", function() {
+      // Get Value of Selection
+      var value = d3.select(this).attr("value");
+      if (value !== InitialXAxis) {
+// Replaces InitialXAxis with Value
+        InitialXAxis = value;
+// Update for new data
+        xLinearScale = xScale(CensusData, InitialXAxis);
+// xAxis update for transitions
+        xAxis = XAxisUpdate(xLinearScale, xAxis);
+// Updating the svgCircles with updated values
+        svgCircles = renderCircles(svgCircles, xLinearScale, InitialXAxis, yLinearScale, InitialYAxis);
+// Updating the textGroup with updated values
+        textGroup = renderText(textGroup, xLinearScale, InitialXAxis, yLinearScale, InitialYAxis)
+        svgCircles = updateToolTip(InitialXAxis, InitialYAxis, svgCircles, textGroup);
