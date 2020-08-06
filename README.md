@@ -1,4 +1,4 @@
-additional# D3 Project - Data Journalism and D3
+# D3 Project - Data Journalism and D3
 
 ![Newsroom](https://media.giphy.com/media/v2xIous7mnEYg/giphy.gif)
 
@@ -51,9 +51,9 @@ Rather than plotting several standalone charts in a Dashboard, as a method of co
 
 #### 2. Incorporated d3-tip
 
-Whist the ticks on the axes allow the user to infer approprimate values for each respective circle, it's near impossible to determine the true value without more required work. By using tooltips, I can reveal specific elements of data when the users cursor hovers over an element. I therefore added tooltips to the circles and displayed each tooltip with the data that the users selects.
+Whist the ticks on the axes allow the user to infer appropriate values for each respective circle, it's near impossible to determine the true value without more required work. By using tooltips, I can reveal specific elements of data when the users cursor hovers over an element. I therefore added tooltips to the circles and displayed each tooltip with the data that the users selects.
 
-![7-animated-scatter](Images/completed_assignment_movie.gif)
+![7-animated-scatter](Images/tiptool_example.gif)
 
 Note: special thanks to [Justin Palmer](https://github.com/Caged) who's plugin (`d3-tip.js`) was utilized for this part of the project.
 - - -
